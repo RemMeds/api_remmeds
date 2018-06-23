@@ -1,7 +1,20 @@
 language: python
+dist: trusty
+sudo: required
+jdk:
+- oraclejdk8
 python:
-  - "3.6"
+- '3.6'
 install:
-  - bash .travis/install.sh
+- bash .travis/install.sh
+- wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
+- unzip sonar-scanner-cli-3.2.0.1227-linux.zip
+- export PATH=$PATH:$TRAVIS_BUILD_DIR/sonar-scanner-3.2.0.1227-linux/bin
+- sonar-scanner --help
 script:
-  - bash .travis/run.sh
+- sonar-scanner -Dsonar.projectKey=api_remmeds -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
+  -Dsonar.organization=remmeds -Dsonar.login=71a0474c2d6a00ad268e14a1419ffd5ea04f720b
+cache:
+  directories:
+  - "$HOME/.sonar/cache"
+  - "$HOME/sonar-scanner-3.2.0.1227-linux/"

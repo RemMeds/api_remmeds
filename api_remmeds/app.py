@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 def app_config(flask_app):
     # 127.0.01 pour pouvoir le mettre sur VM et call le hostname de la VM
-    flask_app.config['SERVER_NAME'] = '127.0.0.1:5000'
+    flask_app.config['SERVER_NAME'] = '127.0.0.1:5000'  # NOSONAR
 
 
 def app_init(flask_app):
