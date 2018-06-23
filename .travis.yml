@@ -1,7 +1,19 @@
 language: python
+dist: trusty
+sudo: required
 python:
   - "3.6"
+addons:
+  sonarcloud:
+    organization: "remmeds"
+    token:
+      secure: ${SONAR_TOKEN}
+jdk:
+  - oraclejdk8
 install:
   - bash .travis/install.sh
 script:
   - bash .travis/run.sh
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
