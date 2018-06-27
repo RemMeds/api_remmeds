@@ -1,6 +1,6 @@
 from flask import request
 from flask_restplus import Resource, Namespace
-from api_remmeds.api.services.user_connexion_service import check_user_connexion, check_mail
+from api_remmeds.api.services.user_connexion_service import check_user_connexion, check_mail, create_account
 
 ns = Namespace('user', description='Check if username exist & match with password entered')
 
@@ -24,3 +24,13 @@ class MailController(Resource):
         result, data = check_mail(mail)
         return {"creation_posibility": result,
                 "data": data}
+
+
+@ns.route('/create_account/<mail>-<password>', methods=['POST'])
+class AccountController(Resource):
+    @staticmethod
+    def post(mail, password):
+        if check_mail(mail)[0]:
+            create_account(mail, password)
+            return {"creation": "DONE"}
+        return {"creation": "ABORDED"}
