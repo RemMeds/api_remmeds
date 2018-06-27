@@ -5,22 +5,19 @@ from api_remmeds.api.services.user_connexion_service import check_user_connexion
 ns = Namespace('user', description='Check if username exist & match with password entered')
 
 
-@ns.route('/check_account')
+@ns.route('/check_account/<user>-<password>')
 class ConnectionController(Resource):
     @staticmethod
-    def get():
-        user = request.args['user']
-        password = request.args['pass']
+    def get(user, password):
         result_connection, user_id = check_user_connexion(user, password)
         return {"connection": result_connection,
                 "user_id": user_id}
 
 
-@ns.route('/check_mail')
+@ns.route('/check_mail/<mail>')
 class MailController(Resource):
     @staticmethod
-    def get():
-        mail = request.args['mail']
+    def get(mail):
         result, data = check_mail(mail)
         return {"creation_posibility": result,
                 "data": data}
