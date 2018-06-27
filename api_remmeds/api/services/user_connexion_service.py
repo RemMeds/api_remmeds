@@ -11,3 +11,15 @@ def check_user_connexion(your_mail, your_password):
         return False, False
     else:
         return True, response[0][0]
+
+
+def check_mail(your_mail):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute("SELECT * FROM rm_user WHERE us_mail = '" + your_mail + "'")
+    response = cur.fetchall()
+    db.close()
+    if not response:
+        return True, "Let's create this account"
+    else:
+        return False, "Already in database, can't create this user"
