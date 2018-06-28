@@ -15,7 +15,7 @@ Ce repository est dédié au back-end de notre solution:
 
 ### Application Android
 
-Le[repository suivant](https://github.com/RemMeds/script_raspberry)est dédié au développement de l'application Android permettant:
+Le [repository suivant](https://github.com/RemMeds/script_raspberry) est dédié au développement de l'application Android permettant:
 
 * La configuration personnalisable de chacun des compartiments du pilulier.
 * Le suivi des prises journalières via des notifications.
@@ -25,7 +25,7 @@ Le[repository suivant](https://github.com/RemMeds/script_raspberry)est dédié a
 ### Script Python - Raspberry
 
 Remmeds est également composé d'un script python permettant la gestion des ouvertures/fermetures des compartiments du pilulier et leur interprétation.
-Voir[lien repository](https://github.com/RemMeds/script_raspberry).
+Voir [lien repository](https://github.com/RemMeds/script_raspberry).
 
 ### Auteurs
 
