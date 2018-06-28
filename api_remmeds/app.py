@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restplus import Api
 from api_remmeds.api.controllers.user_connexion_controller import ns as check_account
-from api_remmeds.api.controllers.repertory_controller import ns as check_repertory
+from api_remmeds.api.controllers.contact_controller import ns as check_repertory
 from api_remmeds.api.controllers.historic_controller import ns as historic
 
 app = Flask(__name__)
