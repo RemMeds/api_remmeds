@@ -31,3 +31,13 @@ def add_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS
         my_chxMail + "', '" + my_note + "')")
     db.commit()
     db.close()
+
+
+def delete_contact(user_id, my_lastname, my_firstname):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute(
+        "DELETE FROM rm_repertory WHERE us_id = '" + user_id + "' AND re_lastname = '" + my_lastname +
+        "' AND re_firstname = '" + my_firstname + "'")
+    db.commit()
+    db.close()
