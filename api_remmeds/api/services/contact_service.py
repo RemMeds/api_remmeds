@@ -41,3 +41,15 @@ def delete_contact(user_id, my_lastname, my_firstname):
         "' AND re_firstname = '" + my_firstname + "'")
     db.commit()
     db.close()
+
+
+def update_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS, my_chxMail, my_note):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute(
+        "UPDATE rm_repertory SET re_phonenumber = '" + my_phone + "', re_mail = '" + my_mail +
+        "',re_chxSMS = '" + my_chxSMS + "',re_chxMail = '" + my_chxMail + "', re_note = '" + my_note + "'"
+        " WHERE us_id = '" + user_id + "' AND re_lastname = '" + my_lastname + "' AND re_firstname = '" +
+        my_firstname + "'")
+    db.commit()
+    db.close()

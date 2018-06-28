@@ -1,5 +1,5 @@
 from flask_restplus import Resource, Namespace
-from api_remmeds.api.services.contact_service import get_user_contacts, add_contact, delete_contact
+from api_remmeds.api.services.contact_service import get_user_contacts, add_contact, delete_contact, update_contact
 
 ns = Namespace('contact', description='Actions on contacts')
 
@@ -25,4 +25,12 @@ class DeleteContactController(Resource):
     @staticmethod
     def post(user, lastname, firstname):
         delete_contact(user, lastname, firstname)
+        return {"response": "DONE"}
+
+
+@ns.route('/update_contact/<user>&<lastname>&<firstname>&<phone>&<mail>&<chxSMS>&<chxMail>&<note>', methods=['POST'])
+class UpdateContactController(Resource):
+    @staticmethod
+    def post(user, lastname, firstname, phone, mail, chxSMS, chxMail, note):
+        update_contact(user, lastname, firstname, phone, mail, chxSMS, chxMail, note)
         return {"response": "DONE"}
