@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/RemMeds/api_remmeds.svg?branch=master)](https://travis-ci.com/RemMeds/api_remmeds)
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=api_remmeds&metric=alert_status)](https://sonarcloud.io/dashboard?id=api_remmeds)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=apiremmeds&metric=alert_status)](https://sonarcloud.io/dashboard?id=apiremmeds)
 
 # Projet Remmeds
 
