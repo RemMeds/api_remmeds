@@ -8,6 +8,7 @@ def get_user_contacts(user_id):
     contact_list = []
     for req in cur.fetchall():
         contact = {
+            "contact_id": req[0],
             "lastname": req[2],
             "firstname": req[3],
             "phonenumber": req[4],
@@ -33,23 +34,25 @@ def add_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS
     db.close()
 
 
-def delete_contact(user_id, my_lastname, my_firstname):
+def delete_contact(contact_id):
     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
     cur = db.cursor()
+    # cur.execute(
+    #     "DELETE FROM rm_repertory WHERE us_id = '" + user_id + "' AND re_lastname = '" + my_lastname +
+    #     "' AND re_firstname = '" + my_firstname + "'")
     cur.execute(
-        "DELETE FROM rm_repertory WHERE us_id = '" + user_id + "' AND re_lastname = '" + my_lastname +
-        "' AND re_firstname = '" + my_firstname + "'")
+        "DELETE FROM rm_repertory WHERE re_id = '" + contact_id + "'")
     db.commit()
     db.close()
 
 
-def update_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS, my_chxMail, my_note):
+def update_contact(contact_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS, my_chxMail, my_note):
     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
     cur = db.cursor()
     cur.execute(
-        "UPDATE rm_repertory SET re_phonenumber = '" + my_phone + "', re_mail = '" + my_mail +
-        "',re_chxSMS = '" + my_chxSMS + "',re_chxMail = '" + my_chxMail + "', re_note = '" + my_note + "'"
-        " WHERE us_id = '" + user_id + "' AND re_lastname = '" + my_lastname + "' AND re_firstname = '" +
-        my_firstname + "'")
+        "UPDATE rm_repertory SET re_lastname = '" + my_lastname + "', re_firstname = '" + my_firstname +
+        "', re_phonenumber = '" + my_phone + "', re_mail = '" + my_mail +
+        "',re_chxSMS = '" + my_chxSMS + "',re_chxMail = '" + my_chxMail + "', re_note = '" + my_note +
+        "' WHERE re_id = '" + contact_id + "'")
     db.commit()
     db.close()
