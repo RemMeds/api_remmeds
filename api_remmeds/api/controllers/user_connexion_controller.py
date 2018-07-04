@@ -1,6 +1,6 @@
 from flask_restplus import Resource, Namespace
 from api_remmeds.api.services.user_connexion_service import check_user_connexion, check_mail, create_account, \
-    update_account
+    update_account, get_user_id_from_mail
 
 ns = Namespace('user', description='Check if username exist & match with password entered')
 
@@ -41,3 +41,11 @@ class UpdateAccountController(Resource):
             update_account(user_id, lastname, firstname, bf, lun, din, bed)
             return {"creation": "DONE"}
         return {"creation": "ABORDED"}
+
+
+@ns.route('/get_user_id/<mail>')
+class GetUserIdController(Resource):
+    @staticmethod
+    def get(mail):
+        user_id = get_user_id_from_mail(mail)
+        return {"user_id": user_id}

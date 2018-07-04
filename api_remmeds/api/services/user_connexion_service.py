@@ -45,3 +45,12 @@ def update_account(user_id, your_lastname, your_firstname, your_bf, your_lun, yo
         your_din + "', us_prefbedtime = '" + your_bed + "' WHERE us_id = '" + user_id + "'")
     db.commit()
     db.close()
+
+
+def get_user_id_from_mail(mail):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute("SELECT us_id FROM rm_user WHERE us_mail = '" + mail + "'")
+    response = cur.fetchall()
+    db.close()
+    return response[0][0]
