@@ -23,21 +23,21 @@ class MailController(Resource):
                 "data": data}
 
 
-@ns.route('/create_account/<mail>&<password>', methods=['POST'])
+@ns.route('/create_account/<mail>&<password>&<lastname>&<firstname>&<bf>&<lun>&<din>&<bed>', methods=['POST'])
 class AccountController(Resource):
     @staticmethod
-    def post(mail, password):
+    def post(mail, password, lastname, firstname, bf, lun, din, bed):
         if check_mail(mail)[0]:
-            create_account(mail, password)
+            create_account(mail, password, lastname, firstname, bf, lun, din, bed)
             return {"creation": "DONE"}
         return {"creation": "ABORDED"}
 
 
-@ns.route('/update_account/<mail>&<lastname>&<firstname>&<bf>&<lun>&<din>&<bed>', methods=['POST'])
+@ns.route('/update_account/<user_id>&<mail>&<lastname>&<firstname>&<bf>&<lun>&<din>&<bed>', methods=['POST'])
 class UpdateAccountController(Resource):
     @staticmethod
-    def post(mail, lastname, firstname, bf, lun, din, bed):
+    def post(user_id, mail, lastname, firstname, bf, lun, din, bed):
         if not check_mail(mail)[0]:
-            update_account(mail, lastname, firstname, bf, lun, din, bed)
+            update_account(user_id, lastname, firstname, bf, lun, din, bed)
             return {"creation": "DONE"}
         return {"creation": "ABORDED"}
