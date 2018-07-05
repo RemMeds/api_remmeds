@@ -1,4 +1,6 @@
 from flask_restplus import Resource, Namespace
+
+from api_remmeds.api.services.compartment_service import add_empty_compartment_new_account
 from api_remmeds.api.services.user_connexion_service import check_user_connexion, check_mail, create_account, \
     update_account, get_user_id_from_mail
 
@@ -29,6 +31,7 @@ class AccountController(Resource):
     def post(mail, password, lastname, firstname, bf, lun, din, bed):
         if check_mail(mail)[0]:
             create_account(mail, password, lastname, firstname, bf, lun, din, bed)
+            add_empty_compartment_new_account(mail)
             return {"creation": "DONE"}
         return {"creation": "ABORDED"}
 
