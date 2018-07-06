@@ -12,11 +12,9 @@ def add_empty_compartment_new_account(mail):
         try:
             for i in range(1, 9):
                 cur.execute(
-                    "INSERT INTO rm_compartment (us_id, com_num, com_name, com_note, com_durationnumb, com_durationtext, "
-                    "com_check_bf, com_check_lun, com_check_din, com_check_bed, com_check_perso_hour, com_hour, "
-                    "com_frequency, com_mon, com_tue, com_wed, com_thu, com_fri, com_sat, com_sun) VALUES('" + user_id + "', "
-                    "'" + str(i) + "', '', '', '0', 'Jours', '0', '0', '0', '0', '0', '', '0', '0', '0', '0', "
-                    "'0', '0', '0', '0')")
+                    "INSERT INTO rm_compartment (us_id, com_num, com_name, com_note, com_durationnumb, "
+                    "com_durationtext, com_check_perso_hour, com_hour, com_frequency, com_days, com_list_pref) "
+                    "VALUES('" + user_id + "', '" + str(i) + "', '', '', '0', 'Jours', '0', '', '0', '', '')")
                 db.commit()
         except Exception as e:
             return "Failure" + e
@@ -24,22 +22,43 @@ def add_empty_compartment_new_account(mail):
         return "Success"
     else:
         return "Wrong mail"
-#
-#
-# def update_compartment(mail, com_name, com_note, com_durationnumb, com_durationtext,
-#                        com_check_bf, com_check_lun, com_check_din, com_check_bed, com_check_perso_hour,
-#                        com_hour, com_frequency, com_mon, com_tue, com_wed, com_thu, com_fri, com_sat,
-#                        com_sun):
-#     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
-#     cur = db.cursor()
-#     cur.execute(
-#         "INSERT INTO rm_compartment (us_id, com_num, com_name, com_note, com_durationnumb, com_durationtext, "
-#         "com_check_bf, com_check_lun, com_check_din, com_check_bed, com_check_perso_hour, com_hour, com_frequency, "
-#         "com_mon, com_tue, com_wed, com_thu, com_fri, com_sat, com_sun) VALUES('" + user_id + "', "
-#         "'" + i + "', '" + com_name + "', '" + com_note + "', '" + com_durationnumb + "', '" + com_durationtext + "', "
-#         "'" + com_check_bf + "', '" + com_check_lun + "', '" + com_check_din + "', '" + com_check_bed + "', '" + com_check_perso_hour + "', "
-#         "'" + com_hour + "', '" + com_frequency + "', '" + com_mon + "', '" + com_tue + "', '" + com_wed + "', "
-#         "'" + com_thu + "', '" + com_fri + "', '" + com_sat + "', '" + com_sun + "')")
-#     db.commit()
-#     db.close()
-#     return "Success"
+
+
+def list_user_compartment(user_id):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute("SELECT * FROM rm_compartment WHERE us_id = '" + user_id + "'")
+    compartment_list = []
+    for req in cur.fetchall():
+        compartment = {
+            "compartment_id": req[0],
+            "user_id": req[1],
+            "compartment_num": req[2],
+            "drug_name": req[3],
+            "note": req[4],
+            "duration_number": req[5],
+            "duration_text": req[6],
+            "check_perso_hour": req[7],
+            "perso_hour": req[8],
+            "frequency": req[9],
+            "days": req[10],
+            "list_pref": req[11]
+        }
+        compartment_list.append(compartment)
+    db.close()
+    return compartment_list
+
+
+def update_compartment(com_id, com_name, com_note, com_durationnumb, com_durationtext, com_check_perso_hour, com_hour,
+                       com_frequency, com_days, com_list_pref):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute(
+        "UPDATE rm_compartment SET com_name = '" + com_name + "', com_note = '" + com_note + "', "
+        "com_durationnumb = '" + com_durationnumb + "', com_durationtext = '" + com_durationtext + "', "
+        "com_check_perso_hour = '" + com_check_perso_hour + "', com_hour = '" + com_hour + "', "
+        "com_frequency = '" + com_frequency + "', com_days = '" + com_days + "', "
+        "com_list_pref = '" + com_list_pref + "' WHERE com_id = '" + com_id + "'")
+    db.commit()
+    db.close()
+    return "Success"

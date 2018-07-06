@@ -9,13 +9,13 @@ def get_user(user_id):
     for req in cur.fetchall():
         user = {
             "user_id": req[0],
-            "lastname": req[2],
-            "firstname": req[3],
-            "mail": req[4],
-            "pref_breakfast": req[6],
-            "pref_lunch": req[7],
-            "pref_dinner": req[8],
-            "pref_bedtime": req[9]
+            "lastname": req[1],
+            "firstname": req[2],
+            "mail": req[3],
+            "pref_breakfast": req[5],
+            "pref_lunch": req[6],
+            "pref_dinner": req[7],
+            "pref_bedtime": req[8]
         }
         user_list.append(user)
     db.close()

@@ -2,7 +2,7 @@ from flask_restplus import Resource, Namespace
 
 from api_remmeds.api.services.compartment_service import add_empty_compartment_new_account
 from api_remmeds.api.services.user_connexion_service import check_user_connexion, check_mail, create_account, \
-    update_account, get_user_id_from_mail
+    update_account, get_user_id_from_mail, update_password
 
 ns = Namespace('user', description='Check if username exist & match with password entered')
 
@@ -52,3 +52,11 @@ class GetUserIdController(Resource):
     def get(mail):
         user_id = get_user_id_from_mail(mail)
         return {"user_id": user_id}
+
+
+@ns.route('/password_update/<user_id>&<old_password>&<new_password>', methods=['POST'])
+class MailController(Resource):
+    @staticmethod
+    def post(user_id, old_password, new_password):
+        update_password(user_id, old_password, new_password)
+        return {"creation": "DONE"}
