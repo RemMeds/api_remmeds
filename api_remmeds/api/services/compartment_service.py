@@ -13,10 +13,8 @@ def add_empty_compartment_new_account(mail):
             for i in range(1, 9):
                 cur.execute(
                     "INSERT INTO rm_compartment (us_id, com_num, com_name, com_note, com_durationnumb, com_durationtext, "
-                    "com_check_bf, com_check_lun, com_check_din, com_check_bed, com_check_perso_hour, com_hour, "
-                    "com_frequency, com_mon, com_tue, com_wed, com_thu, com_fri, com_sat, com_sun) VALUES('" + user_id + "', "
-                    "'" + str(i) + "', '', '', '0', 'Jours', '0', '0', '0', '0', '0', '', '0', '0', '0', '0', "
-                    "'0', '0', '0', '0')")
+                    "com_check_perso_hour, com_hour, com_frequency, com_days, com_list_pref) VALUES('" + user_id + "', "
+                    "'" + str(i) + "', '', '', '0', 'Jours', '0', '', '0', '', '')")
                 db.commit()
         except Exception as e:
             return "Failure" + e
