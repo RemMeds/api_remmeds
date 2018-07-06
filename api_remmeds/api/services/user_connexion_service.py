@@ -54,3 +54,13 @@ def get_user_id_from_mail(mail):
     response = cur.fetchall()
     db.close()
     return response[0][0]
+
+
+def update_password(user_id, old_password, new_password):
+    db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
+    cur = db.cursor()
+    cur.execute(
+        "UPDATE rm_user SET us_mdp = '" + new_password + "' WHERE us_id = '" + user_id + "'"
+        " AND us_mdp = '" + old_password + "'")
+    db.commit()
+    db.close()
