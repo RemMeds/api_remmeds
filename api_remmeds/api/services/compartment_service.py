@@ -14,7 +14,7 @@ def add_empty_compartment_new_account(mail):
                 cur.execute(
                     "INSERT INTO rm_compartment (us_id, com_num, com_name, com_note, com_durationnumb, "
                     "com_durationtext, com_check_perso_hour, com_hour, com_frequency, com_days, com_list_pref) "
-                    "VALUES('" + user_id + "', '" + str(i) + "', '', '', '0', 'Jours', '0', '', '0', '', '')")
+                    "VALUES('" + user_id + "', '" + str(i) + "', '', '', '0', 'jours', '0', '', '0', '', '')")
                 db.commit()
         except Exception as e:
             return "Failure" + e

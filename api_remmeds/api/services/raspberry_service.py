@@ -12,6 +12,7 @@ def get_user(user_id):
             "lastname": req[1],
             "firstname": req[2],
             "mail": req[3],
+            "password": req[4],
             "pref_breakfast": req[5],
             "pref_lunch": req[6],
             "pref_dinner": req[7],
