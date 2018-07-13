@@ -12,9 +12,9 @@ class HistoricController(Resource):
         return {"historic": result}
 
 
-@ns.route('/add_historic/<user>&<drog_name>&<hour>&<day>&<intake_respected>')
+@ns.route('/add_historic/<user>&<drug_name>&<hour>&<day>&<intake_respected>&<num_comp>&<time_slot>')
 class AddHistoricController(Resource):
     @staticmethod
-    def post(user, drog_name, hour, day, intake_respected):
-        add_historic(user, drog_name, hour, day, intake_respected)
+    def post(user, drug_name, hour, day, intake_respected, num_comp, time_slot):
+        add_historic(user, drug_name, hour, day, intake_respected, num_comp, time_slot)
         return {"creation": "DONE"}
