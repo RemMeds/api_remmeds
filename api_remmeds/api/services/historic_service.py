@@ -8,20 +8,22 @@ def list_historic(user_id):
     historic_list = []
     for req in cur.fetchall():
         historic = {
-            "drog_name": req[2],
+            "drug_name": req[2],
             "hour": req[3],
             "day": req[4],
-            "respected": req[5]
+            "respected": req[5],
+            "num_comp": req[6],
+            "time_slot": req[7]
         }
         historic_list.append(historic)
     db.close()
     return historic_list
 
 
-def add_historic(user_id, drog_name, hour, day, intake_respected):
+def add_historic(user_id, drug_name, hour, day, intake_respected):
     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
     cur = db.cursor()
     cur.execute(
-        "INSERT INTO rm_historic (us_id, hi_drugname, hi_hours, hi_day, hi_takenrespected) VALUES ('" + user_id + "', '" + drog_name + "', '" + hour + "', '" + day + "', '" + intake_respected + "')")
+        "INSERT INTO rm_historic (us_id, hi_drugname, hi_hours, hi_day, hi_takenrespected) VALUES ('" + user_id + "', '" + drug_name + "', '" + hour + "', '" + day + "', '" + intake_respected + "')")
     db.commit()
     db.close()
