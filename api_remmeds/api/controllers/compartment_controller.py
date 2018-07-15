@@ -14,10 +14,10 @@ class ListCompartmentController(Resource):
 
 
 @ns.route(
-    '/update_com/<com_id>&<com_name>&<com_note>&<com_durationnumb>&<com_durationtext>&<com_check_perso_hour>&<com_hour>&<com_frequency>&<com_days>&<com_list_pref>')
+    '/update_com/<com_id>&<com_name>&<com_note>&<com_durationnumb>&<com_durationtext>&<com_check_perso_hour>&<com_hour>&<com_frequency>&<com_days>&<com_list_pref>', methods=['POST'])
 class UpdateCompartmentController(Resource):
     @staticmethod
-    def get(com_id, com_name, com_note, com_durationnumb, com_durationtext, com_check_perso_hour, com_hour,
+    def post(com_id, com_name, com_note, com_durationnumb, com_durationtext, com_check_perso_hour, com_hour,
             com_frequency, com_days, com_list_pref):
         update_compartment(com_id, com_name, com_note, com_durationnumb, com_durationtext, com_check_perso_hour,
                            com_hour,
