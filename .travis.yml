@@ -16,6 +16,8 @@ install:
 - unzip sonar-scanner-cli-3.2.0.1227-linux.zip
 - export PATH=$PATH:$TRAVIS_BUILD_DIR/sonar-scanner-3.2.0.1227-linux/bin
 script:
+- bash .travis/run.sh
+- bash .travis/make_coverage.sh
 - sonar-scanner
 cache:
   directories:
