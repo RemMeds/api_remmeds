@@ -15,8 +15,8 @@ class ListContactController(Resource):
 @ns.route('/add_contact/<user>&<lastname>&<firstname>&<phone>&<mail>&<chxSMS>&<chxMail>&<note>', methods=['POST'])
 class AddContactController(Resource):
     @staticmethod
-    def post(user, lastname, firstname, phone, mail, chxSMS, chxMail, note):
-        add_contact(user, lastname, firstname, phone, mail, chxSMS, chxMail, note)
+    def post(user, lastname, firstname, phone, mail, chx_sms, chx_mail, note):
+        add_contact(user, lastname, firstname, phone, mail, chx_sms, chx_mail, note)
         return {"response": "DONE"}
 
 
@@ -31,6 +31,6 @@ class DeleteContactController(Resource):
 @ns.route('/update_contact/<contact_id>&<lastname>&<firstname>&<phone>&<mail>&<chxSMS>&<chxMail>&<note>', methods=['POST'])
 class UpdateContactController(Resource):
     @staticmethod
-    def post(contact_id, lastname, firstname, phone, mail, chxSMS, chxMail, note):
-        update_contact(contact_id, lastname, firstname, phone, mail, chxSMS, chxMail, note)
+    def post(contact_id, lastname, firstname, phone, mail, chx_sms, chx_mail, note):
+        update_contact(contact_id, lastname, firstname, phone, mail, chx_sms, chx_mail, note)
         return {"response": "DONE"}
