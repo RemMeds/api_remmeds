@@ -22,14 +22,14 @@ def get_user_contacts(user_id):
     return contact_list
 
 
-def add_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS, my_chxMail, my_note):
+def add_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chx_sms, my_chx_mail, my_note):
     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
     cur = db.cursor()
     cur.execute(
         "INSERT INTO rm_repertory (us_id, re_lastname, re_firstname, re_phonenumber, re_mail, "
         "re_chxSMS, re_chxMail, re_note) VALUES ('" + user_id + "', '" + my_lastname + "', '" +
-        my_firstname + "', '" + my_phone + "', '" + my_mail + "', '" + my_chxSMS + "', '" +
-        my_chxMail + "', '" + my_note + "')")
+        my_firstname + "', '" + my_phone + "', '" + my_mail + "', '" + my_chx_sms + "', '" +
+        my_chx_mail + "', '" + my_note + "')")
     db.commit()
     db.close()
 
@@ -37,22 +37,19 @@ def add_contact(user_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS
 def delete_contact(contact_id):
     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
     cur = db.cursor()
-    # cur.execute(
-    #     "DELETE FROM rm_repertory WHERE us_id = '" + user_id + "' AND re_lastname = '" + my_lastname +
-    #     "' AND re_firstname = '" + my_firstname + "'")
     cur.execute(
         "DELETE FROM rm_repertory WHERE re_id = '" + contact_id + "'")
     db.commit()
     db.close()
 
 
-def update_contact(contact_id, my_lastname, my_firstname, my_phone, my_mail, my_chxSMS, my_chxMail, my_note):
+def update_contact(contact_id, my_lastname, my_firstname, my_phone, my_mail, my_chx_sms, my_chx_mail, my_note):
     db = pymysql.connect(host='localhost', user='root', password='azerty', db='remmeds_users')
     cur = db.cursor()
     cur.execute(
         "UPDATE rm_repertory SET re_lastname = '" + my_lastname + "', re_firstname = '" + my_firstname +
         "', re_phonenumber = '" + my_phone + "', re_mail = '" + my_mail +
-        "',re_chxSMS = '" + my_chxSMS + "',re_chxMail = '" + my_chxMail + "', re_note = '" + my_note +
+        "',re_chxSMS = '" + my_chx_sms + "',re_chxMail = '" + my_chx_mail + "', re_note = '" + my_note +
         "' WHERE re_id = '" + contact_id + "'")
     db.commit()
     db.close()
